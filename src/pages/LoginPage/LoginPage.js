@@ -1,5 +1,8 @@
+
+
 import React, { useState } from 'react';
 import PocketBase from 'pocketbase';
+import './LoginPage.css'
 
 const client = new PocketBase('http://127.0.0.1:8090');
 
@@ -32,7 +35,7 @@ function LoginPage(props) {
   }
   
   return  <div>
-    <h2>Login</h2>
+    <h2 className='dark-header'>Login</h2>
      <form>
       <input
           name="email"

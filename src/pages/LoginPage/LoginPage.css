@@ -1,0 +1,15 @@
+:root {
+    --DARK_GREY:#2C3333;
+    --DARK_BLUE:#395B64;
+    --LIGHT_BLUE:#A5C9CA;
+    --WHITE:#E7F6F2;
+}
+
+.dark-header {
+    color: var(--DARK_GREY);
+    font-size: larger;
+}
+
+.wrapper{
+    max-width: 400px;
+}
