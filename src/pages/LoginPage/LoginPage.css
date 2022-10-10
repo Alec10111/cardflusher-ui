@@ -10,12 +10,9 @@
     font-size: larger;
 }
 
-.wrapper{
-    max-width: 400px;
-}
-
 .login-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20%;
 }

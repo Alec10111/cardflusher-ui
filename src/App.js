@@ -4,20 +4,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import SettingsPage from "./pages/SettingsPage/SettingsPage";
 import LoginScreen from "./pages/LoginPage/LoginPage";
-
-function setToken(userToken) {
-    sessionStorage.setItem("token", JSON.stringify(userToken));
-}
-
-function getToken() {
-    const tokenString = sessionStorage.getItem("token");
-    const userToken = JSON.parse(tokenString);
-    return userToken?.token;
-}
+import useToken from "./utils/useToken";
 
 function App() {
-    const token = getToken();
-
+    const { token, setToken } = useToken();
     if (!token) {
         return <LoginScreen setToken={setToken} />;
     }
