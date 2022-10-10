@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode=development --open --hot",
+    "start": "webpack-dev-server --mode=development --open --hot --history-api-fallback",
     "build": "webpack --mode=production"
   },
   "author": "",
@@ -13,7 +13,8 @@
     "@nextui-org/react": "^1.0.0-beta.10",
     "pocketbase": "^0.7.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

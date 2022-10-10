@@ -1,58 +1,50 @@
+import React, { useState } from "react";
+import PocketBase from "pocketbase";
+import "./LoginPage.css";
 
+const client = new PocketBase("http://127.0.0.1:8090");
 
-import React, { useState } from 'react';
-import PocketBase from 'pocketbase';
-import './LoginPage.css'
+function LoginScreen(props) {
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
 
-const client = new PocketBase('http://127.0.0.1:8090');
+    async function login() {
+        const userToken = await client.users.authViaEmail(username, password);
+        props.setToken(userToken);
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const token = await login({
+            username,
+            password,
+        });
+        setToken(token);
+    };
 
-// const userAuthData1 = await client.users.authViaEmail('test@example.com', '123456');
-
-
-function LoginPage(props) {
-
-  const [userDetails, setuserDetails] = useState({
-      email: "",
-      password: ""
-    });
-  function handleChange(event) {
-    const { value, name } = event.target;
-
-    setuserDetails(prevValue => {
-      if (name === "email") {
-        return {
-          email: value,
-          passowrd: prevValue.password
-        };
-      }
-      if (name === "password") {
-        return {
-          email: prevValue.email,
-          password: value
-        };
-      }
-    })
-  }
-  
-  return  <div>
-    <h2 className='dark-header'>Login</h2>
-     <form>
-      <input
-          name="email"
-          onChange={handleChange}
-          placeholder="Email"
-          defaultValue={userDetails.email}
-        />
-        <input
-          name="password"
-          onChange={handleChange}
-          placeholder="Password"
-          type="password"
-          defaultValue={userDetails.password}
-        />
-  <button>LOGIN</button>
-   </form>
-    </div>
+    return (
+        <div className="login-wrapper">
+            <h1>Please Log In</h1>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    <p>Username</p>
+                    <input
+                        type="text"
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
+                </label>
+                <label>
+                    <p>Password</p>
+                    <input
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </label>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    );
 }
 
-export default LoginPage;
+export default LoginScreen;
