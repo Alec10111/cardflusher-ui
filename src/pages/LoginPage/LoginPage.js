@@ -6,9 +6,6 @@ const client = new PocketBase('http://127.0.0.1:8090');
 // const userAuthData1 = await client.users.authViaEmail('test@example.com', '123456');
 
 
-function login()
-
-
 function LoginPage(props) {
 
   const [userDetails, setuserDetails] = useState({
@@ -24,13 +21,14 @@ function LoginPage(props) {
           email: value,
           passowrd: prevValue.password
         };
-      } else if (name === "password") {
+      }
+      if (name === "password") {
         return {
           email: prevValue.email,
           password: value
         };
       }
-    });
+    })
   }
   
   return  <div>
